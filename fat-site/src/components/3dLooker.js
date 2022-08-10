@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react'
+import React, { useRef, useState, useMemo } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
@@ -7,42 +7,37 @@ import '../styles/3dLooker.scss';
 
 
 const ROTATION_OFFSET = {
-  x: 4.5,
-  y: 0,
-  z: 0
-}
-const START_ROTATION = {
   x: 4.75,
   y: 0,
   z: 0
 }
 const ROTATION_SENSITIVITY = 0.01
-const FADE_IN_LENGTH = 1
 
-function Model({ mouse, canvas }) {
+function Model({ mouse, canvas, setOpen, open, fadeTime=1 }) {
   const mtl = useLoader(MTLLoader, '/owl.obj.mtl')
   const obj = useLoader(OBJLoader, '/owl.obj')
   const mesh = useRef()
   
   const [active, setActive] = useState(false)
   const [opacity, setOpacity] = useState(0)
-  const [fading, setFading] = useState(false)
+  const [fading, setFading] = useState('not_started')
 
   useFrame((state, delta) => {
     const elapsedTime = state.clock.getElapsedTime()
-    if (elapsedTime < FADE_IN_LENGTH) {  // if we need to do the fade in animation
-      setOpacity(elapsedTime/FADE_IN_LENGTH)
-      if (!fading) {  // if we haven't officially started fading yet, start now and set rotation
-        mesh.current.rotation.z = START_ROTATION.z
-        mesh.current.rotation.y = START_ROTATION.y
-        mesh.current.rotation.x = START_ROTATION.x
+    if (elapsedTime < fadeTime) {  // if we need to do the fade in animation
+      setOpacity(elapsedTime/fadeTime)
+      if (fading === 'not_started') {  // if we haven't officially started fading yet, start now and set rotation
+        mesh.current.rotation.z = ROTATION_OFFSET.z
+        mesh.current.rotation.y = ROTATION_OFFSET.y
+        mesh.current.rotation.x = ROTATION_OFFSET.x
+        setFading('fading')
       }
 
       return
     }
 
     if (fading) {  // if we were last fading but now the animation is over
-      setFading(false)
+      setFading('done')
       setOpacity(1)
     }
 
@@ -82,9 +77,19 @@ function Model({ mouse, canvas }) {
       position={[0, 0, 0]}
       materials={mtl.materials}
       ref={mesh}
-      onClick={(event) => setActive(!active)}
       geometry={geometry}
       scale={3}
+      onClick={(event) => {
+        if (fading === 'done') {
+          setOpen(active ? 'closed' : 'open')
+          setActive(!active)
+        }
+      }}
+      onPointerOver={(event) => {
+        if (fading === 'done' && open === 'closed') {
+          setOpen('half')
+        }
+      }}
     >
       <meshStandardMaterial
         map={texture}
@@ -96,7 +101,7 @@ function Model({ mouse, canvas }) {
   )
 }
 
-export default function Looker({ mouse, ...canvasProps }) {
+export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
   const canvas = useRef()
 
   return (
@@ -104,6 +109,11 @@ export default function Looker({ mouse, ...canvasProps }) {
       <Canvas
       {...canvasProps}
       ref={canvas}
+      onPointerLeave={(event) => {
+        if (open === 'half') {
+          setOpen('closed')
+        }
+      }}
       >
         <ambientLight
           intensity={0.15}
@@ -115,6 +125,8 @@ export default function Looker({ mouse, ...canvasProps }) {
         <Model
           mouse={mouse}
           canvas={canvas}
+          setOpen={setOpen}
+          open={open}
         />
       </Canvas>
     </div>

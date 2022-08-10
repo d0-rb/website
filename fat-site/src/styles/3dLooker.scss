@@ -1,15 +1,17 @@
 canvas {
   width: 100% !important;
   height: 100% !important;
+  border-radius: 50% !important;
 }
 
 #canvas {
   position: absolute;
-  left: 36vw;
+  right: calc(50vw - 18vh);
   top: 33vh;
-  width: 28vw;
+  width: 36vh;
   height: 36vh;
-  animation: slide 1s 1s both;
+  animation: slide 1s 1.5s both;
+  border-radius: 50%;
 }
 
 @keyframes slide {
@@ -17,6 +19,6 @@ canvas {
     transform: translateY(0) translateX(0) scale(1);
   }
   100% {
-    transform: translateY(-42vh) translateX(43.5vw) scale(0.5);
+    transform: translateY(-42vh) translateX(calc(50vw - 9vh)) scale(0.5);
   }
 }

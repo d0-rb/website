@@ -1,0 +1,50 @@
+.fade-in {
+  animation: fade-in-anim 0.3s both;
+}
+
+.fade-out {
+  animation: fade-in-anim 0.1s both;
+  animation-direction: reverse;
+}
+
+.show-menu {
+  animation: show-menu-anim 1s both;
+}
+
+.close-menu {
+  animation: fade-in-anim 0.5s both;
+  animation-direction: reverse;
+  height: 300pt;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+@keyframes fade-in-anim {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes show-menu-anim {
+  0% {
+    height: 0pt;
+  }
+  100% {
+    height: 300pt;
+  }
+}
+
+#menu {
+  position: absolute;
+  min-width: 18.5vh;  // should be close to the width/height of the looker after the intro animation
+  min-height: 18vh;
+  right: 0vw;
+  top: 0vh;
+  border: thin solid #CDCDCD;
+  border-radius: 50pt;
+}
