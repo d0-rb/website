@@ -1,6 +1,5 @@
 import './App.css';
 import React, { useState, useMemo, useRef } from 'react';
-import Box from '@mui/material/Box';
 import { Button, CssBaseline } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { themes } from "./themes/themes";
@@ -43,6 +42,8 @@ function App() {
         <Menu
           open={menuOpen}
           setOpen={setMenu}
+          mode={mode}
+          setMode={setMode}
         />
         <Looker
           camera={{

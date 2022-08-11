@@ -1,5 +1,3 @@
-import { blue, pink } from "@mui/material/colors";
-
 export const themes = {
   dark: {
     primary: {

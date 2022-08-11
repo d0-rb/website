@@ -13,7 +13,7 @@ const ROTATION_OFFSET = {
 }
 const ROTATION_SENSITIVITY = 0.01
 
-function Model({ mouse, canvas, setOpen, open, fadeTime=1 }) {
+function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime=1 }) {
   const mtl = useLoader(MTLLoader, '/owl.obj.mtl')
   const obj = useLoader(OBJLoader, '/owl.obj')
   const mesh = useRef()
@@ -24,19 +24,16 @@ function Model({ mouse, canvas, setOpen, open, fadeTime=1 }) {
 
   useFrame((state, delta) => {
     const elapsedTime = state.clock.getElapsedTime()
-    if (elapsedTime < fadeTime) {  // if we need to do the fade in animation
+    if (elapsedTime < fadeTime) {
       setOpacity(elapsedTime/fadeTime)
-      if (fading === 'not_started') {  // if we haven't officially started fading yet, start now and set rotation
-        mesh.current.rotation.z = ROTATION_OFFSET.z
-        mesh.current.rotation.y = ROTATION_OFFSET.y
-        mesh.current.rotation.x = ROTATION_OFFSET.x
-        setFading('fading')
-      }
-
-      return
     }
-
-    if (fading) {  // if we were last fading but now the animation is over
+    if (fading === 'not_started') {  // if we haven't officially started fading yet, start now and set rotation
+      mesh.current.rotation.z = ROTATION_OFFSET.z
+      mesh.current.rotation.y = ROTATION_OFFSET.y
+      mesh.current.rotation.x = ROTATION_OFFSET.x
+      setFading('fading')
+    }
+    if (elapsedTime > fadeTime && fading === 'fading') {  // if we are transitioning from fading to not fading
       setFading('done')
       setOpacity(1)
     }
@@ -86,8 +83,17 @@ function Model({ mouse, canvas, setOpen, open, fadeTime=1 }) {
         }
       }}
       onPointerOver={(event) => {
-        if (fading === 'done' && open === 'closed') {
-          setOpen('half')
+        if (fading === 'done') {
+          setCursor('pointer')
+          
+          if (open === 'closed') {
+            setOpen('half')
+          }
+        }
+      }}
+      onPointerOut={(event) => {
+        if (fading === 'done') {
+          setCursor('auto')
         }
       }}
     >
@@ -103,6 +109,7 @@ function Model({ mouse, canvas, setOpen, open, fadeTime=1 }) {
 
 export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
   const canvas = useRef()
+  const [cursorStyle, setCursor] = useState('auto')
 
   return (
     <div id="canvas">
@@ -114,9 +121,10 @@ export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
           setOpen('closed')
         }
       }}
+      style={{ cursor: cursorStyle }}
       >
         <ambientLight
-          intensity={0.15}
+          intensity={0}
         />
         <pointLight
           position={[0, 0, 3]}
@@ -127,6 +135,7 @@ export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
           canvas={canvas}
           setOpen={setOpen}
           open={open}
+          setCursor={setCursor}
         />
       </Canvas>
     </div>
