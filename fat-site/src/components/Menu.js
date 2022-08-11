@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import Tooltip from '@mui/material/Tooltip';
 import '../styles/Menu.scss';
 
 let startDB = true;
@@ -68,18 +68,20 @@ export default function Menu({ setScroll, open, setOpen, mode, setMode }) {
               height: '17vh',
             }}
           />
-          <IconButton
-            aria-label={mode}
-            size="large"
-            onClick={() => {
-              setMode(OPPOSITE_MODE[mode])
-            }}
-            sx={{
-              borderRadius: 0,
-            }}
-          >
-            {mode === 'dark' ? <LightModeIcon fontSize="large" /> : <DarkModeIcon fontSize="large" />}
-          </IconButton>
+          <Tooltip title={mode === 'dark' ? 'Light Mode' : 'Dark Mode'}>
+            <IconButton
+              aria-label={mode}
+              size="large"
+              onClick={() => {
+                setMode(OPPOSITE_MODE[mode])
+              }}
+              sx={{
+                borderRadius: 0,
+              }}
+            >
+              {mode === 'dark' ? <LightModeIcon fontSize="large" /> : <DarkModeIcon fontSize="large" />}
+            </IconButton>
+          </Tooltip>
         </Stack>
       </Box>
     </div>

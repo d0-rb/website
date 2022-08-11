@@ -1,12 +1,19 @@
 import './App.css';
 import React, { useState, useMemo, useRef } from 'react';
-import { Button, CssBaseline } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { themes } from "./themes/themes";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMouse from '@react-hook/mouse-position'
 import Looker from './components/3dLooker';
 import Menu from './components/Menu';
+import Fadeout from './components/Fadeout';
+import Main from './pages/Main';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 
 function App() {
@@ -30,35 +37,35 @@ function App() {
   );
 
   return (
-    <div className="App" ref={mouseRef}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme />
-        <Button color="primary" variant="contained">
-          Primary
-        </Button>
-        <Button color="secondary" variant="contained">
-          Secondary
-        </Button>
-        <Menu
-          open={menuOpen}
-          setOpen={setMenu}
-          mode={mode}
-          setMode={setMode}
-        />
-        <Looker
-          camera={{
-            fov: 60,
-            near: 0.1,
-            far: 1000,
-            position: [0, 0, 2]
-          }}
-          mouse={mouse}
-          fadeTime={2}
-          setOpen={setMenu}
-          open={menuOpen}
-        />
-      </ThemeProvider>
-    </div>
+    <ParallaxProvider>
+      <div className="App" ref={mouseRef}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline enableColorScheme />
+          <Routes>
+            <Route exact path="/" element={<Main />} />
+          </Routes>
+          <Menu
+            open={menuOpen}
+            setOpen={setMenu}
+            mode={mode}
+            setMode={setMode}
+          />
+          <Fadeout />
+          <Looker
+            camera={{
+              fov: 60,
+              near: 0.1,
+              far: 1000,
+              position: [0, 0, 2]
+            }}
+            mouse={mouse}
+            fadeTime={0.5}
+            setOpen={setMenu}
+            open={menuOpen}
+          />
+        </ThemeProvider>
+      </div>
+    </ParallaxProvider>
   );
 }
 

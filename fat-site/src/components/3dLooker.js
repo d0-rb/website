@@ -13,7 +13,7 @@ const ROTATION_OFFSET = {
 }
 const ROTATION_SENSITIVITY = 0.01
 
-function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime=1 }) {
+function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
   const mtl = useLoader(MTLLoader, '/owl.obj.mtl')
   const obj = useLoader(OBJLoader, '/owl.obj')
   const mesh = useRef()
@@ -92,6 +92,9 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime=1 }) {
         }
       }}
       onPointerOut={(event) => {
+        if (open === 'half') {
+          setOpen('closed')
+        }
         if (fading === 'done') {
           setCursor('auto')
         }
@@ -107,7 +110,7 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime=1 }) {
   )
 }
 
-export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
+export default function Looker({ mouse, setOpen, open, fadeTime, ...canvasProps }) {
   const canvas = useRef()
   const [cursorStyle, setCursor] = useState('auto')
 
@@ -116,11 +119,6 @@ export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
       <Canvas
       {...canvasProps}
       ref={canvas}
-      onPointerLeave={(event) => {
-        if (open === 'half') {
-          setOpen('closed')
-        }
-      }}
       style={{ cursor: cursorStyle }}
       >
         <ambientLight
@@ -136,6 +134,7 @@ export default function Looker({ mouse, setOpen, open, ...canvasProps }) {
           setOpen={setOpen}
           open={open}
           setCursor={setCursor}
+          fadeTime={fadeTime}
         />
       </Canvas>
     </div>
