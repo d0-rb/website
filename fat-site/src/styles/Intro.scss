@@ -4,8 +4,8 @@
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 10em; /* Adjust as needed */
   animation: 
-    typing 1s 1.4s cubic-bezier(0.190, 1.000, 0.220, 1.000) both,
-    blink-caret .75s 2.4s step-end infinite;
+    typing 1s 1.1s cubic-bezier(0.190, 1.000, 0.220, 1.000) both,
+    blink-caret .75s 2.3s step-end infinite;
 }
 
 /* The typing effect */
@@ -13,85 +13,85 @@
   0% {
     width: 0ex;
   }
-  4.14% {
+  6.14% {
     width: 0ex;
   }
   7.14% {
     width: 1.6ex;
   }
-  11.29% {
+  13.29% {
     width: 1.6ex;
   }
   14.29% {
     width: 2.6ex;
   }
-  18.29% {
+  20.43% {
     width: 2.6ex;
   }
   21.43% {
     width: 3.6ex;
   }
-  25.57% {
+  27.57% {
     width: 3.6ex;
   }
   28.57% {
     width: 4.2ex;
   }
-  32.71% {
+  34.71% {
     width: 4.2ex;
   }
   35.71% {
     width: 5.1ex;
   }
-  39.86% {
+  41.86% {
     width: 5.1ex;
   }
   42.86% {
     width: 5.5ex;
   }
-  47% {
+  49% {
     width: 5.5ex;
   }
   50% {
     width: 6.7ex;
   }
-  54.14% {
+  56.14% {
     width: 6.7ex;
   }
   57.14% {
     width: 7.7ex;
   }
-  61.29% {
+  63.29% {
     width: 7.7ex;
   }
   64.29% {
     width: 8.6ex;
   }
-  68.43% {
+  70.43% {
     width: 8.6ex;
   }
   71.43% {
     width: 9.25ex;
   }
-  75.57% {
+  77.57% {
     width: 9.25ex;
   }
   78.57% {
     width: 9.6ex;
   }
-  82.71% {
+  84.71% {
     width: 9.6ex;
   }
   85.71% {
     width: 10ex;
   }
-  89.86% {
+  91.86% {
     width: 10ex;
   }
   92.86% {
     width: 10.35ex;
   }
-  97% {
+  99% {
     width: 10.35ex;
   }
   100% {

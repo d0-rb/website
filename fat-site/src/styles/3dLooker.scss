@@ -7,7 +7,7 @@ canvas {
 #canvas {
   position: absolute;
   right: calc(50vw - 18vh);
-  top: 33vh;
+  top: 26vh;
   width: 36vh;
   height: 36vh;
   animation: slide 1s 0.5s both;
@@ -19,6 +19,6 @@ canvas {
     transform: translateY(0) translateX(0) scale(1);
   }
   100% {
-    transform: translateY(-44vh) translateX(calc(50vw - 7.2vh)) scale(0.4);
+    transform: translateY(-37vh) translateX(calc(50vw - 7.2vh)) scale(0.4);
   }
 }
