@@ -16,17 +16,25 @@
   max-height: 30vh;
 }
 
+#menu {
+  position: absolute;
+  right: 0vw;
+  top: 0vh;
+  min-width: 14.4vh;  // should be close to the width/height of the looker after the intro animation
+  min-height: 14.4vh;
+}
+
 .invisible {
   visibility: hidden;
 }
 
 @keyframes fade-in-anim {
   0% {
-    max-height: 18vh;
+    max-height: 14.4vh;
     opacity: 0%;
   }
   100% {
-    max-height: 18vh;
+    max-height: 14.4vh;
     opacity: 30%;
   }
 }
@@ -42,7 +50,7 @@
 
 @keyframes show-menu-anim {
   0% {
-    max-height: 18vh;
+    max-height: 14.4vh;
     opacity: 30%;
   }
   100% {

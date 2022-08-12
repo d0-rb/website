@@ -11,21 +11,25 @@ import '../styles/Intro.scss';
 
 export default function Intro({ children }) {
   const theme = useTheme()
+  console.log(theme.palette)
   
   return (
-    <Box>
+    <Container>
+      <Box  // padding, a top margin if you will
+        sx={{
+          maxWidth: '100%',
+          height: '15vh',
+        }}
+      />
       <Typography variant="h5" align="left" className="pre-text">
         Hey! Nice to meet you, I'm
       </Typography>
-      <Typography variant="h1" align="left" className="title">
+      <Typography variant="h1" align="left" className="title" sx={{
+        borderRight: '0.15em solid ' + theme.palette.primary.main,
+        color: theme.palette.primary.main,
+      }}>
         Henry Castillo
       </Typography>
-      <Button color="primary" variant="contained">
-        Primary
-      </Button>
-      <Button color="secondary" variant="contained">
-        Secondary
-      </Button>
-    </Box>
+    </Container>
     )
   }

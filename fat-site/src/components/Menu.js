@@ -42,13 +42,6 @@ export default function Menu({ setScroll, open, setOpen, mode, setMode }) {
       key={menuClass}
       id="menu"
       className={menuClass}
-      style={{
-        position: 'absolute',
-        right: '0vw',
-        top: '0vh',
-        minWidth: '18.5vh',  // should be close to the width/height of the looker after the intro animation
-        minHeight: '18vh',
-      }}
     >
       <Box
         fixed
@@ -57,7 +50,7 @@ export default function Menu({ setScroll, open, setOpen, mode, setMode }) {
           backgroundColor: theme.palette.background.paper,
           maxHeight: 'inherit',
           minHeight: 'inherit',
-          borderRadius: '50pt',
+          borderRadius: '100vh',
           overflow: 'hidden',
         }}
       >
@@ -65,7 +58,7 @@ export default function Menu({ setScroll, open, setOpen, mode, setMode }) {
           <Box  // padding so that the icons dont start underneath the owl
             sx={{
               width: '100%',
-              height: '17vh',
+              height: '14vh',
             }}
           />
           <Tooltip title={mode === 'dark' ? 'Light Mode' : 'Dark Mode'}>
@@ -79,7 +72,7 @@ export default function Menu({ setScroll, open, setOpen, mode, setMode }) {
                 borderRadius: 0,
               }}
             >
-              {mode === 'dark' ? <LightModeIcon fontSize="large" /> : <DarkModeIcon fontSize="large" />}
+              {mode === 'dark' ? <LightModeIcon style={{ fontSize: "4vh" }} /> : <DarkModeIcon style={{ fontSize: "4vh" }} />}
             </IconButton>
           </Tooltip>
         </Stack>
