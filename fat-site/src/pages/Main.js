@@ -6,14 +6,24 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import Intro from '../sections/Intro'
+import About from '../sections/About'
 import '../styles/Main.scss';
 
 
 export default function Main({ children }) {
 
   return (
-    <Box>
+    <Stack
+      sx={{
+        paddingTop: '15vh',
+      }}
+      direction="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      spacing={2}
+    >
       <Intro />
-    </Box>
+      <About />
+    </Stack>
   )
 }
