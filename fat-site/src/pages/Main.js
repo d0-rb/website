@@ -20,7 +20,7 @@ export default function Main({ children }) {
       direction="column"
       justifyContent="flex-start"
       alignItems="center"
-      spacing={2}
+      spacing={14}
     >
       <Intro />
       <About />

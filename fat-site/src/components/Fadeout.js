@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import '../styles/Fadeout.scss';
 
 
-export default function Main({ children }) {
+export default function Fadeout({ children }) {
   const theme = useTheme();
 
   return (
@@ -12,10 +12,10 @@ export default function Main({ children }) {
       className={'cover-box'}
       sx={{
         position: 'absolute',
-        width: '100vw',
-        height: '100vh',
-        left: '0vw',
-        top: '0vh',
+        width: '100%',
+        height: '100%',
+        left: '0%',
+        top: '0%',
         backgroundColor: theme.palette.background.paper,
       }}
     >

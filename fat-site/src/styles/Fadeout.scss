@@ -1,5 +1,6 @@
 .cover-box {
   animation: fade-out-anim 1s 0.5s both;
+  pointer-events: auto;
 }
 
 @keyframes fade-out-anim {

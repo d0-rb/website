@@ -1,8 +1,8 @@
-import './App.css';
+import './App.scss';
 import React, { useState, useMemo, useRef } from 'react';
 import { CssBaseline } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { themes } from "./themes/themes";
+import themes from "./themes/themes";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMouse from '@react-hook/mouse-position'
 import Looker from './components/3dLooker';
@@ -22,16 +22,13 @@ function App() {
   const mouseRef = useRef(null)
 
   const mouse = useMouse(mouseRef, {
-    fps: 60,
+    fps: 30,
   })
 
   const theme = useMemo(
     () =>
       createTheme({
-        palette: {
-          mode,
-          ...themes[mode],
-        },
+        ...themes(mode),
       }),
     [mode],
   );

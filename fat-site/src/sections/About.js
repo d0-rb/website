@@ -8,10 +8,7 @@ import Button from '@mui/material/Button';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
-import CallIcon from '@mui/icons-material/Call';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Tooltip from '@mui/material/Tooltip';
 import '../styles/About.scss';
 
@@ -27,6 +24,19 @@ export default function About({ children }) {
             position: 'sticky',
           }}>
             About Me
+          </Typography>
+        </Grid2>
+        <Grid2 xs={4} sm={4} md={12}>
+          <IconButton aria-label="About Me">
+            <ExpandMoreIcon fontSize="large" />
+          </IconButton>
+        </Grid2>
+        <Grid2 xs={4} sm={4} md={12}>
+          <Typography variant="h4" align="left">
+            Introduction
+          </Typography>
+          <Typography align="left">
+            I'm a second year student at UT Austin studying Computer Science and Mathematics.
           </Typography>
         </Grid2>
       </Grid2>

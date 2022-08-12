@@ -40,13 +40,11 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
 
     if (mouse.isOver) {
       const canvasRect = canvas.current.getBoundingClientRect()
-      // const centerX = canvas.current.offsetLeft + canvas.current.offsetWidth/2
-      // const centerY = canvas.current.offsetTop + canvas.current.offsetHeight/2
       const centerX = canvasRect.x + canvasRect.width/2
       const centerY = canvasRect.y + canvasRect.height/2
 
-      const mouseX = (mouse.x - centerX)  // mouse x relative to canvas
-      const mouseY = (mouse.y - centerY)  // same for mouse y
+      const mouseX = (mouse.clientX - centerX)  // mouse x relative to canvas
+      const mouseY = (mouse.clientY - centerY)  // same for mouse y
 
       const lookX = Math.sign(mouseX) / (-1 - ROTATION_SENSITIVITY * Math.abs(mouseX)) + Math.sign(mouseX)
       const lookY = Math.sign(mouseY) / (-1 - ROTATION_SENSITIVITY * Math.abs(mouseY)) + Math.sign(mouseY)
