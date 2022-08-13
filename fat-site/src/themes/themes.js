@@ -8,10 +8,15 @@ const themeDifferences = {  // dict of palettes that have different values
     palette: {
       mode: 'dark',
       primary: {
-        main: '#00ffde',
+        main: '#00ffff',
       },
       secondary: {
         main: '#ff29ff',
+      },
+      background: {
+        // default: '#121212',
+        // paper: '#121212',
+        about: '#00001a',
       },
       UT: {
         main: '#f8971f',
@@ -27,6 +32,11 @@ const themeDifferences = {  // dict of palettes that have different values
       secondary: {
         main: '#D439B5',
       },
+      background: {
+        // default: '#121212',
+        // paper: '#121212',
+        about: '#e6e6ff',
+      },
       UT: {
         main: '#bf5700',
       },
@@ -36,15 +46,6 @@ const themeDifferences = {  // dict of palettes that have different values
 
 const themeShared = {  // this is only shallow copied, so if a root level key is reused from themeDifferences it will get overwritten
   typography: {
-    body1: {
-      fontSize: '1rem',
-      [themeDefault.breakpoints.up('sm')]: {
-        fontSize: '1.2rem',
-      },
-      [themeDefault.breakpoints.up('md')]: {
-        fontSize: '1.4rem',
-      },
-    },
     body1: {
       fontSize: '1rem',
       [themeDefault.breakpoints.up('sm')]: {

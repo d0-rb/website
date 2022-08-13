@@ -7,7 +7,7 @@ canvas {
 #canvas {
   position: fixed;
   right: calc(50vw - 18vh);
-  top: 26vh;
+  top: 28vh;
   width: 36vh;
   height: 36vh;
   animation: slide 1s 0.5s both;
@@ -17,7 +17,7 @@ canvas {
 @keyframes slide {
   0% {
     // transform: translateY(0) translateX(0) scale(1);
-    top: 26vh;
+    top: 29vh;
     right: calc(50vw - 18vh);
     width: 36vh;
     height: 36vh;
