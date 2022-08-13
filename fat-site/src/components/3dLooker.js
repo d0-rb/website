@@ -11,7 +11,7 @@ const ROTATION_OFFSET = {
   y: 0,
   z: 0
 }
-const ROTATION_SENSITIVITY = 0.01
+const ROTATION_SENSITIVITY = 1
 
 function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
   const mtl = useLoader(MTLLoader, '/owl.obj.mtl')
@@ -43,15 +43,15 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
       const centerX = canvasRect.x + canvasRect.width/2
       const centerY = canvasRect.y + canvasRect.height/2
 
-      const mouseX = (mouse.clientX - centerX)  // mouse x relative to canvas
-      const mouseY = (mouse.clientY - centerY)  // same for mouse y
+      const mouseX = (mouse.clientX - centerX) / canvasRect.width  // mouse x relative to canvas
+      const mouseY = (mouse.clientY - centerY) / canvasRect.height // same for mouse y
 
       const lookX = Math.sign(mouseX) / (-1 - ROTATION_SENSITIVITY * Math.abs(mouseX)) + Math.sign(mouseX)
       const lookY = Math.sign(mouseY) / (-1 - ROTATION_SENSITIVITY * Math.abs(mouseY)) + Math.sign(mouseY)
 
       mesh.current.rotation.z = ROTATION_OFFSET.z + lookX
       mesh.current.rotation.y = ROTATION_OFFSET.y
-      mesh.current.rotation.x = ROTATION_OFFSET.x + lookY 
+      mesh.current.rotation.x = ROTATION_OFFSET.x + lookY
     }
   })
   

@@ -8,15 +8,19 @@ const themeDifferences = {  // dict of palettes that have different values
     palette: {
       mode: 'dark',
       primary: {
-        main: '#00ffff',
+        main: '#62C4FF',
       },
       secondary: {
-        main: '#ff29ff',
+        main: '#ff6fff',
+      },
+      tertiary: {
+        main: '#ffc96b',
+        emph: '#fffc9b',
       },
       background: {
         // default: '#121212',
         // paper: '#121212',
-        about: '#00001a',
+        about: '#1E1E1E',
       },
       UT: {
         main: '#f8971f',
@@ -32,10 +36,14 @@ const themeDifferences = {  // dict of palettes that have different values
       secondary: {
         main: '#D439B5',
       },
+      tertiary: {
+        main: '#114717',
+        emph: '#114717',
+      },
       background: {
         // default: '#121212',
         // paper: '#121212',
-        about: '#e6e6ff',
+        about: '#DEDEE8',
       },
       UT: {
         main: '#bf5700',

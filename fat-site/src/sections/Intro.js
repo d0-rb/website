@@ -41,10 +41,7 @@ export default function Intro({ children }) {
           </Typography>
           <Typography variant="h5" align="left" className="short-desc">
             {calculateAge(new Date('June 4, 2002'))} years old<br />
-            Computer Science/Mathematics Major at&nbsp;
-            <Tooltip title="The University of Texas at Austin">
-              <Link href="https://www.utexas.edu/" color={theme.palette.UT.main}>UT Austin</Link>
-            </Tooltip><br />
+            Computer Science/Mathematics Student<br />
             Machine Learning Enthusiast<br />
             Full Stack Developer
           </Typography>
