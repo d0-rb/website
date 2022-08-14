@@ -10,8 +10,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
-import CallIcon from '@mui/icons-material/Call';
+import DescriptionIcon from '@mui/icons-material/Description';
 import Tooltip from '@mui/material/Tooltip';
 import '../styles/Intro.scss';
 
@@ -45,17 +44,24 @@ export default function Intro({ children }) {
             Full Stack Developer
           </Typography>
           <Stack direction="row" spacing={2}>
-            <IconButton aria-label="GitHub" component={Link} href="https://github.com/d0-rb">
-              <GitHubIcon fontSize="large" />
-            </IconButton>
-            <IconButton aria-label="LinkedIn" component={Link} href="https://www.linkedin.com/in/henryandrecastillo/">
-              <LinkedInIcon fontSize="large" />
-            </IconButton>
+            <Tooltip title="GitHub">
+              <IconButton aria-label="GitHub" component={Link} rel="noopener noreferrer" target="_blank" href="https://github.com/d0-rb">
+                <GitHubIcon fontSize="large" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="LinkedIn">
+              <IconButton aria-label="LinkedIn" component={Link} rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/henryandrecastillo/">
+                <LinkedInIcon fontSize="large" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Résumé">
+              <IconButton aria-label="Résumé" component={Link} rel="noopener noreferrer" target="_blank" href="https://docs.google.com/document/d/1bndnOZ0dvo3-yB8GAzAtFhGznkCvNNAylhcI6O9XX2M/edit?usp=sharing">
+                <DescriptionIcon fontSize="large" />
+              </IconButton>
+            </Tooltip>
           </Stack>
         </Grid2>
-        <Grid2 xs={0} sm={0} md={1}>
-        </Grid2>
-        <Grid2 xs={4} sm={4} md={3}>
+        <Grid2 xs={4} sm={4} md={4}>
           <Box
             component={'img'}
             sx={{

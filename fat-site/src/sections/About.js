@@ -21,7 +21,7 @@ export default function About({ children }) {
   const containerRef = useRef()
   const theme = useTheme()
   const parallaxController = useParallaxController()
-  const startYOffset = Math.max(0.85 * window.innerHeight - 520, 0)  // since css calc dont wanna work, i gotta do js calc
+  const startYOffset = Math.max(0.75 * window.innerHeight - 480, 0)  // since css calc dont wanna work, i gotta do js calc
   const endYOffset = -51
 
   const { ref } = useParallax({
@@ -93,9 +93,9 @@ export default function About({ children }) {
                       <Typography align="left">
                         I'm a second year student at&nbsp;
                         <Tooltip title="The University of Texas at Austin">
-                          <Link href="https://www.utexas.edu/" color="UT.main" >UT Austin</Link>
+                          <Link href="https://www.utexas.edu/" rel="noopener noreferrer" target="_blank" color="UT.main" >UT Austin</Link>
                         </Tooltip>
-                        &nbsp;double majoring in <Typography color="primary" display="inline">Computer Science and Mathematics</Typography> with a love for <Typography color="secondary" display="inline">deep learning</Typography>. I'm especially interested in computer vision and its applications.<br />
+                        &nbsp;double majoring in <Typography color="primary" display="inline">Computer Science</Typography> and <Typography color="primary" display="inline">Mathematics</Typography> with a love for <Typography color="secondary" display="inline">deep learning</Typography>. I'm especially interested in computer vision and its applications.<br />
                       </Typography>
                     </Paper>
                   </Parallax>
@@ -114,7 +114,25 @@ export default function About({ children }) {
                         Interests and Motivations
                       </Typography>
                       <Typography align="left">
-                        I'm someone who likes to learn about and build <Typography color="secondary" display="inline">cool</Typography> things. Whether it be understanding <Link href="https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/" color="tertiary.emph">diffusion models</Link>, making a 3D owl that follows your cursor,
+                        I'm someone who likes to learn about and build <Typography color="secondary" display="inline">cool</Typography> things.
+                        Whether it be understanding&nbsp;
+                        <Link href="https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/" rel="noopener noreferrer" target="_blank" color="tertiary.emph">diffusion models</Link>
+                        , making a low poly 3D&nbsp;
+                        <Link
+                          variant="body1"
+                          component="button"
+                          sx={{ transform: 'translateY(-4%)' }}
+                          color="tertiary.emph"
+                          onClick={() => console.log('hi')}  // TODO: make this do something with the owl
+                        >
+                          owl
+                        </Link>
+                        &nbsp;that follows your cursor, or finding a really cool math&nbsp;
+                        <Link href="https://timvieira.github.io/blog/post/2014/07/31/gumbel-max-trick/" rel="noopener noreferrer" target="_blank" color="tertiary.emph">concept</Link>
+                        , I often find myself engrossed in one thing or another.
+                      </Typography>
+                      <Typography align="left">
+                        In my free time, I
                       </Typography>
                     </Paper>
                   </Parallax>
@@ -141,7 +159,7 @@ export default function About({ children }) {
               </Grid2>
               <Grid2 xs={0} sm={0} md={4}>
                 <Parallax
-                  translateY={['50%', '-40%']}
+                  translateY={['50%', '-30%']}
                   startScroll={0}
                   endScroll={600}
                 >
