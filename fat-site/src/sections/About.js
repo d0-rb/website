@@ -48,6 +48,7 @@ export default function About({ children }) {
         <Stack direction="column" spacing={2}>
           <Parallax
             translateY={[startYOffset + 'px', '0px']}
+            translateX={['0%', '-16.66666%']}
             startScroll={0}
             endScroll={400}
           >
@@ -58,6 +59,7 @@ export default function About({ children }) {
           <Parallax
             scale={[1, 0]}
             translateY={[startYOffset + 'px', '0px']}
+            translateX={['0%', '-16.66666%']}
             startScroll={0}
             endScroll={400}
           >
@@ -75,53 +77,73 @@ export default function About({ children }) {
             <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }}>
               <Grid2 xs={4} sm={4} md={8}>
                 <Stack spacing={4}>
-                  <Paper elevation={8}
-                    sx={{
-                      padding: theme.spacing(2),
-                    }}
+                  <Parallax
+                    translateY={['20vh', '0vh']}
+                    startScroll={0}
+                    endScroll={200}
                   >
-                    <Typography variant="h4" align="left">
-                      Who I Am
-                    </Typography>
-                    <Typography align="left">
-                      I'm a second year student at&nbsp;
-                      <Tooltip title="The University of Texas at Austin">
-                        <Link href="https://www.utexas.edu/" color={theme.palette.UT.main}>UT Austin</Link>
-                      </Tooltip>
-                      &nbsp;double majoring in <Typography color="tertiary.emph" display="inline">Computer Science and Mathematics</Typography> with a love for <Typography color="secondary" display="inline">deep learning</Typography>. I'm especially interested in computer vision and its applications.<br />
-                    </Typography>
-                  </Paper>
-                  <Paper
-                    elevation={8}
-                    sx={{
-                      padding: theme.spacing(2),
-                    }}
+                    <Paper elevation={8}
+                      sx={{
+                        padding: theme.spacing(2),
+                      }}
+                    >
+                      <Typography variant="h4" align="left">
+                        Who I Am
+                      </Typography>
+                      <Typography align="left">
+                        I'm a second year student at&nbsp;
+                        <Tooltip title="The University of Texas at Austin">
+                          <Link href="https://www.utexas.edu/" color="UT.main" >UT Austin</Link>
+                        </Tooltip>
+                        &nbsp;double majoring in <Typography color="primary" display="inline">Computer Science and Mathematics</Typography> with a love for <Typography color="secondary" display="inline">deep learning</Typography>. I'm especially interested in computer vision and its applications.<br />
+                      </Typography>
+                    </Paper>
+                  </Parallax>
+                  <Parallax
+                    translateY={['30vh', '0vh']}
+                    startScroll={100}
+                    endScroll={300}
                   >
-                    <Typography variant="h4" align="left">
-                      Interests and Motivations
-                    </Typography>
-                    <Typography align="left">
-                      I'm someone who likes to learn about and build <Typography color="secondary" display="inline">cool</Typography> things. Whether it be
-                    </Typography>
-                  </Paper>
-                  <Paper
-                    elevation={8}
-                    sx={{
-                      padding: theme.spacing(2),
-                    }}
+                    <Paper
+                      elevation={8}
+                      sx={{
+                        padding: theme.spacing(2),
+                      }}
+                    >
+                      <Typography variant="h4" align="left">
+                        Interests and Motivations
+                      </Typography>
+                      <Typography align="left">
+                        I'm someone who likes to learn about and build <Typography color="secondary" display="inline">cool</Typography> things. Whether it be understanding <Link href="https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/" color="tertiary.emph">diffusion models</Link>, making a 3D owl that follows your cursor,
+                      </Typography>
+                    </Paper>
+                  </Parallax>
+                  <Parallax
+                    translateY={['30vh', '0vh']}
+                    startScroll={200}
+                    endScroll={400}
                   >
-                    <Typography variant="h4" align="left">
-                      Some Things I've Done
-                    </Typography>
-                    <Typography align="left">
-                      achievements, research, etc.
-                    </Typography>
-                  </Paper>
+                    <Paper
+                      elevation={8}
+                      sx={{
+                        padding: theme.spacing(2),
+                      }}
+                    >
+                      <Typography variant="h4" align="left">
+                        Some Things I've Done
+                      </Typography>
+                      <Typography align="left">
+                        achievements, research, etc.
+                      </Typography>
+                    </Paper>
+                  </Parallax>
                 </Stack>
               </Grid2>
               <Grid2 xs={0} sm={0} md={4}>
                 <Parallax
-                  translateY={['50%', '-20%']}
+                  translateY={['50%', '-40%']}
+                  startScroll={0}
+                  endScroll={600}
                 >
                   <ImageList variant="masonry" cols={2}>
                     <ImageListItem>

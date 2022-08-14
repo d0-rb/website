@@ -11,7 +11,7 @@ const themeDifferences = {  // dict of palettes that have different values
         main: '#62C4FF',
       },
       secondary: {
-        main: '#ff6fff',
+        main: '#ff7fff',
       },
       tertiary: {
         main: '#ffc96b',
@@ -37,8 +37,8 @@ const themeDifferences = {  // dict of palettes that have different values
         main: '#D439B5',
       },
       tertiary: {
-        main: '#114717',
-        emph: '#114717',
+        main: '#9e7d42',
+        emph: '#a08b00',
       },
       background: {
         // default: '#121212',

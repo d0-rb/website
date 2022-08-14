@@ -40,7 +40,6 @@ export default function Intro({ children }) {
             Henry Castillo
           </Typography>
           <Typography variant="h5" align="left" className="short-desc">
-            {calculateAge(new Date('June 4, 2002'))} years old<br />
             Computer Science/Mathematics Student<br />
             Machine Learning Enthusiast<br />
             Full Stack Developer
