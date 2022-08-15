@@ -1,8 +1,11 @@
-import React, { useRef, useState, useMemo } from 'react'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import React, { useRef, useState, useMemo } from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { useTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import '../styles/3dLooker.scss';
 
 
@@ -108,7 +111,8 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
   )
 }
 
-export default function Looker({ mouse, setOpen, open, fadeTime, ...canvasProps }) {
+export default function Looker({ mouse, speech, setOpen, open, fadeTime, ...canvasProps }) {
+  const theme = useTheme()
   const canvas = useRef()
   const [cursorStyle, setCursor] = useState('auto')
 
@@ -135,6 +139,19 @@ export default function Looker({ mouse, setOpen, open, fadeTime, ...canvasProps 
           fadeTime={fadeTime}
         />
       </Canvas>
+      <Paper
+        elevation={8}
+        id="speech-bubble"
+        key={speech}
+        className={speech === 'N/A' ? '' : 'say'}
+        sx={{
+          padding: theme.spacing(1),
+        }}
+      >
+        <Typography variant="body2" align="right">
+          {speech}
+        </Typography>
+      </Paper>
     </div>
     )
   }

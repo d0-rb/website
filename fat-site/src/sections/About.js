@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -17,7 +17,13 @@ import { Parallax, useParallax, useParallaxController } from 'react-scroll-paral
 import '../styles/About.scss';
 
 
-export default function About({ children }) {
+const OWL_SAYINGS = [
+  'Hi!',
+  'How are you?',
+]
+let OWL_SAYING_IDX = 0
+
+export default function About({ setSpeech, children }) {
   const containerRef = useRef()
   const theme = useTheme()
   const parallaxController = useParallaxController()
@@ -123,7 +129,11 @@ export default function About({ children }) {
                           component="button"
                           sx={{ transform: 'translateY(-4%)' }}
                           color="tertiary.emph"
-                          onClick={() => console.log('hi')}  // TODO: make this do something with the owl
+                          onClick={() => {
+                            setSpeech(OWL_SAYINGS[OWL_SAYING_IDX])
+                            OWL_SAYING_IDX += 1
+                            OWL_SAYING_IDX %= OWL_SAYINGS.length
+                          }}
                         >
                           owl
                         </Link>

@@ -12,6 +12,37 @@ canvas {
   height: 36vh;
   animation: slide 1s 0.5s both;
   border-radius: 50%;
+
+  #speech-bubble {
+    position: absolute;
+    right: 90%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  .say {
+    animation: fade-bubble 3s linear both;
+  }
+}
+
+@keyframes fade-bubble {
+  0% {
+    right: 90%;
+    opacity: 0;
+  }
+  10% {
+    right: 110%;
+    opacity: 1;
+  }
+  90% {
+    right: 110%;
+    opacity: 1;
+  }
+  100% {
+    right: 90%;
+    opacity: 0;
+  }
 }
 
 @keyframes slide {

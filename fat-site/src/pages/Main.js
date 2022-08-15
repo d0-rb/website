@@ -11,7 +11,7 @@ import { useParallax } from 'react-scroll-parallax';
 import '../styles/Main.scss';
 
 
-export default function Main({ children }) {
+export default function Main({ setSpeech, children }) {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
   }, [])
@@ -28,7 +28,7 @@ export default function Main({ children }) {
       spacing={4}
     >
       <Intro />
-      <About />
+      <About setSpeech={setSpeech} />
     </Stack>
   )
 }
