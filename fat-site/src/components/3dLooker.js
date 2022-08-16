@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
@@ -15,8 +15,9 @@ const ROTATION_OFFSET = {
   z: 0
 }
 const ROTATION_SENSITIVITY = 1.5
+const INTERACTION_TIMEOUT = 10
 
-function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
+function Model({ mouse, canvas, setInteracted, interacted, setOpen, open, setCursor, fadeTime }) {
   const mtl = useLoader(MTLLoader, '/owl.obj.mtl')
   const obj = useLoader(OBJLoader, '/owl.obj')
   const mesh = useRef()
@@ -91,6 +92,9 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
             setOpen('half')
           }
         }
+        if (!interacted) {
+          setInteracted(true)
+        }
       }}
       onPointerOut={(event) => {
         if (open === 'half') {
@@ -111,10 +115,21 @@ function Model({ mouse, canvas, setOpen, open, setCursor, fadeTime }) {
   )
 }
 
-export default function Looker({ mouse, speech, setOpen, open, fadeTime, ...canvasProps }) {
+export default function Looker({ mouse, setInteracted, interacted, setSpeech, speech, setOpen, open, fadeTime, ...canvasProps }) {
   const theme = useTheme()
   const canvas = useRef()
   const [cursorStyle, setCursor] = useState('auto')
+  useEffect(() => {
+    if (!interacted) {  // if interacted is set to false, we set the timer to nudge the user
+      const timeout = setTimeout(() => {
+        setSpeech('Try clicking me 👀')
+      }, INTERACTION_TIMEOUT * 1000)
+  
+      return () => {
+        clearTimeout(timeout)
+      }
+    }  // if interacted is true, do nothing. the timeout shouldve been cleared by the cleanup function
+  }, [interacted])
 
   return (
     <div id="canvas">
@@ -133,6 +148,8 @@ export default function Looker({ mouse, speech, setOpen, open, fadeTime, ...canv
         <Model
           mouse={mouse}
           canvas={canvas}
+          setInteracted={setInteracted}
+          interacted={interacted}
           setOpen={setOpen}
           open={open}
           setCursor={setCursor}
@@ -148,7 +165,7 @@ export default function Looker({ mouse, speech, setOpen, open, fadeTime, ...canv
           padding: theme.spacing(1),
         }}
       >
-        <Typography variant="body2" align="right">
+        <Typography variant="body2" align="right" noWrap>
           {speech}
         </Typography>
       </Paper>

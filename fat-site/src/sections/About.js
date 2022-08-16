@@ -20,10 +20,17 @@ import '../styles/About.scss';
 const OWL_SAYINGS = [
   'Hi!',
   'How are you?',
+  'I\'m good, thanks for asking',
+  '(✿◠‿◠) ',
+  'Hi!',
+  'How are you?',
+  'I\'m good, thanks for asking',
+  '(✿◠‿◠) ',
+  'hey havent you clicked on that enough',
 ]
 let OWL_SAYING_IDX = 0
 
-export default function About({ setSpeech, children }) {
+export default function About({ setSpeech, interacted, setInteracted, children }) {
   const containerRef = useRef()
   const theme = useTheme()
   const parallaxController = useParallaxController()
@@ -133,6 +140,10 @@ export default function About({ setSpeech, children }) {
                             setSpeech(OWL_SAYINGS[OWL_SAYING_IDX])
                             OWL_SAYING_IDX += 1
                             OWL_SAYING_IDX %= OWL_SAYINGS.length
+
+                            if (!interacted) {
+                              setInteracted(true)
+                            }
                           }}
                         >
                           owl
