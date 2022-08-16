@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import Intro from '../sections/Intro'
 import About from '../sections/About'
+import Projects from '../sections/Projects'
 import { useParallax } from 'react-scroll-parallax';
 import '../styles/Main.scss';
 
@@ -29,6 +30,7 @@ export default function Main({ setInteracted, interacted, setSpeech, children })
     >
       <Intro />
       <About setInteracted={setInteracted} interacted={interacted} setSpeech={setSpeech} />
+      <Projects />
     </Stack>
   )
 }
