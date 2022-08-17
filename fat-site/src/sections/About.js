@@ -26,6 +26,10 @@ const OWL_SAYINGS = [
   'How are you?',
   'I\'m good, thanks for asking',
   '(✿◠‿◠) ',
+  'Hi!',
+  'How are you?',
+  'I\'m good, thanks for asking',
+  '(✿◠‿◠) ',
   'hey havent you clicked on that enough',
 ]
 let OWL_SAYING_IDX = 0
@@ -37,10 +41,12 @@ export default function About({ setSpeech, interacted, setInteracted, children }
   const startYOffset = Math.max(0.75 * window.innerHeight - 480, 0)  // since css calc dont wanna work, i gotta do js calc
   const endYOffset = -51
 
+  const [scrollLength, setScrollLength] = useState(480)
+
   const { ref } = useParallax({
     opacity: [0, 1],
     startScroll: 0,
-    endScroll: 400,
+    endScroll: scrollLength,
   })
   
   return (
@@ -63,7 +69,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
             translateY={[startYOffset + 'px', '0px']}
             translateX={['0%', '-16.66666%']}
             startScroll={0}
-            endScroll={400}
+            endScroll={scrollLength}
           >
             <Typography variant="h2">
               About Me
@@ -74,7 +80,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
             translateY={[startYOffset + 'px', '0px']}
             translateX={['0%', '-16.66666%']}
             startScroll={0}
-            endScroll={400}
+            endScroll={scrollLength}
           >
             <IconButton aria-label="About Me" onClick={() => {
               containerRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -85,7 +91,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
           <Parallax
             translateY={[startYOffset + 'px', endYOffset + 'px']}
             startScroll={0}
-            endScroll={400}
+            endScroll={scrollLength}
           >
             <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }}>
               <Grid2 xs={4} sm={4} md={8}>
@@ -93,7 +99,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                   <Parallax
                     translateY={['20vh', '0vh']}
                     startScroll={0}
-                    endScroll={200}
+                    endScroll={scrollLength/2}
                   >
                     <Paper elevation={8}
                       sx={{
@@ -114,8 +120,8 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                   </Parallax>
                   <Parallax
                     translateY={['30vh', '0vh']}
-                    startScroll={100}
-                    endScroll={300}
+                    startScroll={scrollLength/4}
+                    endScroll={3 * scrollLength/4}
                   >
                     <Paper
                       elevation={8}
@@ -159,8 +165,8 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                   </Parallax>
                   <Parallax
                     translateY={['30vh', '0vh']}
-                    startScroll={200}
-                    endScroll={400}
+                    startScroll={scrollLength/2}
+                    endScroll={scrollLength}
                   >
                     <Paper
                       elevation={8}
@@ -182,7 +188,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                 <Parallax
                   translateY={['50%', '-30%']}
                   startScroll={0}
-                  endScroll={600}
+                  endScroll={scrollLength * 1.5}
                 >
                   <ImageList variant="masonry" cols={2}>
                     <ImageListItem>
