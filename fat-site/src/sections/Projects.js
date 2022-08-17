@@ -15,11 +15,54 @@ import Tooltip from '@mui/material/Tooltip';
 import { Parallax, useParallax, useParallaxController } from 'react-scroll-parallax';
 import '../styles/Projects.scss';
 
+const query = `
+{
+  projectCollection {
+    items {
+      sys {
+        id,
+        publishedAt,
+      },
+      title,
+      blurb,
+      image {
+        url,
+      },
+      blog {
+        json,
+      },
+    }
+  }
+}
+`
+
 
 export default function Projects({ children }) {
   const theme = useTheme()
 
   const [scrollLength, setScrollLength] = useState(1000)
+  const [projects, setProjects] = useState([])
+
+  useEffect(() => {
+    axios.post(`https://graphql.contentful.com/content/v1/spaces/4ubly5b64zma/`,
+      JSON.stringify({ query }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          // Authenticate the request
+          Authorization: "Bearer Xkw8IR7BC5BIxCmOOe2GXYaUahjsg1KVTHzTXce1W3k",
+        }
+      },
+      )
+      .then(({ data, status, statusText }) => {
+        if (status != 200) {
+          console.error(statusText);
+        }
+
+        // rerender the entire component with new data
+        setProjects(data.projectCollection.items);
+      });
+  }, []);
   
   return (
     <Container>
