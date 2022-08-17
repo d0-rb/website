@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -8,13 +9,15 @@ import Button from '@mui/material/Button';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import DescriptionIcon from '@mui/icons-material/Description';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Tooltip from '@mui/material/Tooltip';
 import { Parallax, useParallax, useParallaxController } from 'react-scroll-parallax';
 import '../styles/Projects.scss';
 
+// contentful graphql query
 const query = `
 {
   projectCollection {
@@ -55,12 +58,15 @@ export default function Projects({ children }) {
       },
       )
       .then(({ data, status, statusText }) => {
-        if (status != 200) {
+        if (status !== 200) {
           console.error(statusText);
         }
 
         // rerender the entire component with new data
-        setProjects(data.projectCollection.items);
+        const items = data?.data?.projectCollection?.items
+        if (items) {
+          setProjects(items)
+        }
       });
   }, []);
   
@@ -76,20 +82,27 @@ export default function Projects({ children }) {
             Projects
           </Typography>
           <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 9, md: 16 }}>
-            <Grid2 xs={2} sm={3} md={4}>
-              <Box
-                component={'img'}
-                sx={{
-                  maxWidth: '100%',
-                  aspectRatio: 1,
-                  userSelect: 'none',
-                }}
-                alt={'Henry Castillo Headshot'}
-                src={'/headshot.png'}
-              />
-            </Grid2>
-            <Grid2 xs={2} sm={3} md={4}>
-            </Grid2>
+            {projects.map((project) => {
+              return (
+                <Grid2 xs={2} sm={3} md={4} key={project?.sys?.id}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      image={project?.image?.url}
+                      alt={project?.title}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h4" component="div">
+                        {project?.title}
+                      </Typography>
+                      <Typography variant="body">
+                        {project?.blurb}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid2>
+              )
+            })}
           </Grid2>
         </Parallax>
       </Stack>
