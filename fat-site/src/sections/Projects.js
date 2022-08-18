@@ -13,6 +13,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
 import Tooltip from '@mui/material/Tooltip';
 import { Parallax, useParallax, useParallaxController } from 'react-scroll-parallax';
 import '../styles/Projects.scss';
@@ -85,20 +86,22 @@ export default function Projects({ children }) {
             {projects.map((project) => {
               return (
                 <Grid2 xs={2} sm={3} md={4} key={project?.sys?.id}>
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      image={project?.image?.url}
-                      alt={project?.title}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h4" component="div">
-                        {project?.title}
-                      </Typography>
-                      <Typography variant="body">
-                        {project?.blurb}
-                      </Typography>
-                    </CardContent>
+                  <Card raised>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        image={project?.image?.url}
+                        alt={project?.title}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h4" component="div">
+                          {project?.title}
+                        </Typography>
+                        <Typography variant="body2">
+                          {project?.blurb}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
                   </Card>
                 </Grid2>
               )
