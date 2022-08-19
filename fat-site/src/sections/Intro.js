@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { forwardRef } from 'react'
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -22,11 +22,11 @@ function calculateAge(birthday) { // birthday is a date
 }
 
 
-export default function Intro({ children }) {
+const Intro = forwardRef(({ children }, ref) => {
   const theme = useTheme()
   
   return (
-    <Container>
+    <Container ref={ref}>
       <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }}>
         <Grid2 xs={4} sm={4} md={8}>
           <Typography variant="h4" align="left" className="pre-text">
@@ -76,4 +76,6 @@ export default function Intro({ children }) {
       </Grid2>
     </Container>
   )
-}
+})
+
+export default Intro

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, forwardRef } from 'react'
 import axios from 'axios';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Tooltip from '@mui/material/Tooltip';
+import Paper from '@mui/material/Paper';
 import { Parallax, useParallax, useParallaxController } from 'react-scroll-parallax';
 import '../styles/Projects.scss';
 
@@ -39,9 +40,13 @@ const query = `
   }
 }
 `
+// component to decide whether to wrap project cards
+const ConditionalWrapper = ({ condition, wrapper, children }) => {
+  return condition ? wrapper(children) : children
+}
 
 
-export default function Projects({ children }) {
+const Projects = forwardRef(({ children }, ref) => {
   const theme = useTheme()
 
   const [scrollLength, setScrollLength] = useState(1000)
@@ -72,13 +77,18 @@ export default function Projects({ children }) {
   }, []);
   
   return (
-    <Container>
-      <Stack direction="column" spacing={2}>
-        <Parallax
-          translateY={['60vh', '0vh']}
-          startScroll={0}
-          endScroll={scrollLength}
-        >
+    <Paper
+      sx={{
+        width: '100%',
+        zIndex: 0,
+        backgroundColor: theme.palette.background.projects,
+        paddingTop: theme.spacing(4)
+      }}
+      elevation={0}
+      square
+    >
+      <Container ref={ref} >
+        <Stack direction="column" spacing={2}>
           <Typography variant="h2">
             Projects
           </Typography>
@@ -87,11 +97,14 @@ export default function Projects({ children }) {
               return (
                 <Grid2 xs={2} sm={3} md={4} key={project?.sys?.id}>
                   <Card raised>
-                    <CardActionArea>
+                    <ConditionalWrapper
+                      condition={project?.blog}
+                      wrapper={CardActionArea}
+                    >
                       <CardMedia
                         component="img"
                         image={project?.image?.url}
-                        alt={project?.title}
+                        alt={`${project?.title} image`}
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h4" component="div">
@@ -101,14 +114,16 @@ export default function Projects({ children }) {
                           {project?.blurb}
                         </Typography>
                       </CardContent>
-                    </CardActionArea>
+                    </ConditionalWrapper>
                   </Card>
                 </Grid2>
               )
             })}
           </Grid2>
-        </Parallax>
-      </Stack>
-    </Container>
+        </Stack>
+      </Container>
+    </Paper>
   )
-}
+})
+
+export default Projects

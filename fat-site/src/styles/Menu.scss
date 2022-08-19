@@ -13,7 +13,7 @@
 
 .close-menu {
   animation: fade-out-anim 0.5s both;
-  max-height: 30vh;
+  height: 50vh;
 }
 
 #menu {
@@ -54,7 +54,7 @@
     opacity: 30%;
   }
   100% {
-    max-height: 30vh;
+    max-height: 50vh;
     opacity: 100%;
   }
 }

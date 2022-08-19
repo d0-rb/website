@@ -11,7 +11,7 @@ export default function Fadeout({ children }) {
     <Box
       className={'cover-box'}
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         width: '100%',
         height: '100%',
         left: '0%',

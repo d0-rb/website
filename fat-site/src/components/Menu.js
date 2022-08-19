@@ -5,9 +5,7 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import HomeIcon from '@mui/icons-material/Home';
 import Tooltip from '@mui/material/Tooltip';
-import Link from '@mui/material/Link';
 import '../styles/Menu.scss';
 
 let startDB = true;
@@ -22,7 +20,7 @@ const OPPOSITE_MODE = {
   dark: 'light',
 }
 
-export default function Menu({ open, setOpen, mode, setMode }) {
+export default function Menu({ options, open, setOpen, mode, setMode }) {
   const theme = useTheme();
   const [menuClass, setMenuClass] = useState('invisible')
 
@@ -54,6 +52,7 @@ export default function Menu({ open, setOpen, mode, setMode }) {
           minHeight: 'inherit',
           borderRadius: '100vh',
           overflow: 'hidden',
+          paddingBottom: '3vh',
         }}
       >
         <Stack>
@@ -77,17 +76,7 @@ export default function Menu({ open, setOpen, mode, setMode }) {
               {mode === 'dark' ? <LightModeIcon style={{ fontSize: "4vh" }} /> : <DarkModeIcon style={{ fontSize: "4vh" }} />}
             </IconButton>
           </Tooltip>
-          <Tooltip title="Home" placement="left">
-            <IconButton
-              component={Link}
-              href="/"
-              sx={{
-                borderRadius: 0,
-              }}
-            >
-              <HomeIcon style={{ fontSize: "4vh" }} />
-            </IconButton>
-          </Tooltip>
+          {options}
         </Stack>
       </Box>
     </div>

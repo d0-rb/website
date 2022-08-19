@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useRef, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -34,42 +34,44 @@ const OWL_SAYINGS = [
 ]
 let OWL_SAYING_IDX = 0
 
-export default function About({ setSpeech, interacted, setInteracted, children }) {
-  const containerRef = useRef()
+const About = forwardRef(({ setSpeech, interacted, setInteracted, children }, ref) => {
   const theme = useTheme()
   const parallaxController = useParallaxController()
   const startYOffset = Math.max(0.75 * window.innerHeight - 480, 0)  // since css calc dont wanna work, i gotta do js calc
   const endYOffset = -51
 
-  const [scrollLength, setScrollLength] = useState(480)
-
-  const { ref } = useParallax({
-    opacity: [0, 1],
-    startScroll: 0,
-    endScroll: scrollLength,
-  })
+  const [scrollLength, setScrollLength] = useState(500)
   
   return (
-    <>
-      <Box
-        bgcolor={theme.palette.background.about}
-        ref={ref}
-        sx={{
+    <div style={{ position: 'relative', width: '100%' }}>
+      <Parallax
+        opacity={[0, 1]}
+        startScroll={0}
+        endScroll={scrollLength}
+        style={{
           position: 'absolute',
           width: '100%',
-          height: '200%',
-          top: '0%',
+          height: '300%',
+          left: '0%',
+          bottom: '0%',
           pointerEvents: 'none',
         }}
       >
-      </Box>
-      <Container ref={containerRef}>
-        <Stack direction="column" spacing={2}>
+        <Box
+          bgcolor={theme.palette.background.about}
+          sx={{
+            width: '100%',
+            height: '100%',
+          }}
+        />
+      </Parallax>
+      <Container ref={ref}>
+        <Stack direction="column" spacing={2} sx={{ paddingTop: '5vh' }}>
           <Parallax
             translateY={[startYOffset + 'px', '0px']}
             translateX={['0%', '-16.66666%']}
             startScroll={0}
-            endScroll={scrollLength}
+            endScroll={scrollLength * 0.8}
           >
             <Typography variant="h2">
               About Me
@@ -80,10 +82,10 @@ export default function About({ setSpeech, interacted, setInteracted, children }
             translateY={[startYOffset + 'px', '0px']}
             translateX={['0%', '-16.66666%']}
             startScroll={0}
-            endScroll={scrollLength}
+            endScroll={scrollLength * 0.8}
           >
             <IconButton aria-label="About Me" onClick={() => {
-              containerRef.current.scrollIntoView({ behavior: 'smooth' })
+              ref.current.scrollIntoView({ behavior: 'smooth' })
             }}>
               <ExpandMoreIcon fontSize="large" />
             </IconButton>
@@ -91,7 +93,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
           <Parallax
             translateY={[startYOffset + 'px', endYOffset + 'px']}
             startScroll={0}
-            endScroll={scrollLength}
+            endScroll={scrollLength * 0.8}
           >
             <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }}>
               <Grid2 xs={4} sm={4} md={8}>
@@ -106,7 +108,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                         padding: theme.spacing(2),
                       }}
                     >
-                      <Typography variant="h4" align="left">
+                      <Typography variant="h4" align="left" color="tertiary.emph">
                         Who I Am
                       </Typography>
                       <Typography align="left">
@@ -114,14 +116,28 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                         <Tooltip title="The University of Texas at Austin">
                           <Link href="https://www.utexas.edu/" rel="noopener noreferrer" target="_blank" color="UT.main" >UT Austin</Link>
                         </Tooltip>
-                        &nbsp;double majoring in <Typography color="primary" display="inline">Computer Science</Typography> and <Typography color="primary" display="inline">Mathematics</Typography> with a love for <Typography color="secondary" display="inline">deep learning</Typography>. I'm especially interested in computer vision and its applications.<br />
+                        &nbsp;double majoring in <Typography color="primary" display="inline">Computer Science</Typography> and <Typography color="primary" display="inline">Mathematics</Typography> with a love for <Typography color="secondary" display="inline">deep learning</Typography>.
+                        I'm especially interested in computer vision and its applications.<br />
+                        I'm also an officer for the&nbsp;
+                        <Tooltip title="Machine Learning and Data Science">
+                          <Link href="https://www.mlds-ut.club/" rel="noopener noreferrer" target="_blank" color="primary">MLDS</Link>
+                        </Tooltip>
+                        &nbsp;club and&nbsp;
+                        <Tooltip title="Engineering and Computational Learning of Artificial Intelligence in Robotics">
+                          <Link href="https://eclair-robotics.github.io/" rel="noopener noreferrer" target="_blank" color="secondary">ECLAIR</Link>
+                        </Tooltip>
+                        &nbsp;at&nbsp;
+                        <Tooltip title="The University of Texas at Austin">
+                          <Typography color="UT.main" display="inline">UT Austin</Typography>
+                        </Tooltip>
+                        .
                       </Typography>
                     </Paper>
                   </Parallax>
                   <Parallax
                     translateY={['30vh', '0vh']}
-                    startScroll={scrollLength/4}
-                    endScroll={3 * scrollLength/4}
+                    startScroll={scrollLength * 0.3}
+                    endScroll={scrollLength * 0.8}
                   >
                     <Paper
                       elevation={8}
@@ -129,19 +145,23 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                         padding: theme.spacing(2),
                       }}
                     >
-                      <Typography variant="h4" align="left">
+                      <Typography variant="h4" align="left" color="tertiary.emph">
                         Interests and Motivations
                       </Typography>
                       <Typography align="left">
-                        I'm someone who likes to learn about and build <Typography color="secondary" display="inline">cool</Typography> things.
+                        I'm someone who likes to learn about and build&nbsp;
+                        <Tooltip title="😎">
+                          <Typography color="secondary" display="inline">cool</Typography>
+                        </Tooltip>
+                        &nbsp;things.
                         Whether it be understanding&nbsp;
-                        <Link href="https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/" rel="noopener noreferrer" target="_blank" color="tertiary.emph">diffusion models</Link>
+                        <Link href="https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/" rel="noopener noreferrer" target="_blank" color="secondary">diffusion models</Link>
                         , making a low poly 3D&nbsp;
                         <Link
                           variant="body1"
                           component="button"
                           sx={{ transform: 'translateY(-4%)' }}
-                          color="tertiary.emph"
+                          color="secondary"
                           onClick={() => {
                             setSpeech(OWL_SAYINGS[OWL_SAYING_IDX])
                             OWL_SAYING_IDX += 1
@@ -155,7 +175,7 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                           owl
                         </Link>
                         &nbsp;that follows your cursor, or finding a really cool math&nbsp;
-                        <Link href="https://timvieira.github.io/blog/post/2014/07/31/gumbel-max-trick/" rel="noopener noreferrer" target="_blank" color="tertiary.emph">concept</Link>
+                        <Link href="https://timvieira.github.io/blog/post/2014/07/31/gumbel-max-trick/" rel="noopener noreferrer" target="_blank" color="secondary">concept</Link>
                         , I often find myself engrossed in one thing or another.
                       </Typography>
                       <Typography align="left">
@@ -165,8 +185,8 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                   </Parallax>
                   <Parallax
                     translateY={['30vh', '0vh']}
-                    startScroll={scrollLength/2}
-                    endScroll={scrollLength}
+                    startScroll={scrollLength * 0.6}
+                    endScroll={scrollLength * 1.1}
                   >
                     <Paper
                       elevation={8}
@@ -174,11 +194,11 @@ export default function About({ setSpeech, interacted, setInteracted, children }
                         padding: theme.spacing(2),
                       }}
                     >
-                      <Typography variant="h4" align="left">
+                      <Typography variant="h4" align="left" color="tertiary.emph">
                         Some Things I've Done
                       </Typography>
                       <Typography align="left">
-                        achievements, research, etc.
+                        achievements
                       </Typography>
                     </Paper>
                   </Parallax>
@@ -228,6 +248,8 @@ export default function About({ setSpeech, interacted, setInteracted, children }
           </Parallax>
         </Stack>
       </Container>
-    </>
+    </div>
   )
-}
+})
+
+export default About

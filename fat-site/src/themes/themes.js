@@ -21,6 +21,7 @@ const themeDifferences = {  // dict of palettes that have different values
         // default: '#121212',
         // paper: '#121212',
         about: '#1E1E1E',
+        projects: '#1E1E1E',
       },
       UT: {
         main: '#f8971f',
@@ -37,13 +38,14 @@ const themeDifferences = {  // dict of palettes that have different values
         main: '#D439B5',
       },
       tertiary: {
-        main: '#9e7d42',
-        emph: '#a08b00',
+        main: '#43A047',
+        emph: '#795548',
       },
       background: {
         // default: '#121212',
         // paper: '#121212',
-        about: '#DEDEE8',
+        about: '#B3E5FC',
+        projects: '#FFD0C5',
       },
       UT: {
         main: '#bf5700',

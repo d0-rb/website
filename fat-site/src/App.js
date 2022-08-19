@@ -19,6 +19,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 function App() {
   const [mode, setMode] = useState(useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light');
   const [menuOpen, setMenu] = useState('closed');
+  const [menuOptions, setMenuOptions] = useState([]);
   const [owlSpeech, setOwlSpeech] = useState('N/A');
   const [interacted, setInteracted] = useState(false);
   const mouseRef = useRef(null)
@@ -41,9 +42,10 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline enableColorScheme />
           <Routes>
-            <Route exact path="/" element={<Main setSpeech={setOwlSpeech} interacted={interacted} setInteracted={setInteracted} />} />
+            <Route exact path="/" element={<Main setMenuOptions={setMenuOptions} setSpeech={setOwlSpeech} interacted={interacted} setInteracted={setInteracted} />} />
           </Routes>
           <Menu
+            options={menuOptions}
             open={menuOpen}
             setOpen={setMenu}
             mode={mode}
