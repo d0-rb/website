@@ -151,7 +151,7 @@ const About = forwardRef(({ setSpeech, interacted, setInteracted, children }, re
                       <Typography align="left">
                         I'm someone who likes to learn about and build&nbsp;
                         <Tooltip title="😎">
-                          <Typography color="secondary" display="inline">cool</Typography>
+                          <Typography color="primary" display="inline">cool</Typography>
                         </Tooltip>
                         &nbsp;things.
                         Whether it be understanding&nbsp;
