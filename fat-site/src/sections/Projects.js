@@ -92,7 +92,7 @@ const Projects = forwardRef(({ children }, ref) => {
           <Typography variant="h2">
             Projects
           </Typography>
-          <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 9, md: 16 }}>
+          <Grid2 container spacing={{ xs: 2, sm: 3, md: 3 }} columns={{ xs: 4, sm: 9, md: 12 }}>
             {projects.map((project) => {
               return (
                 <Grid2 xs={2} sm={3} md={4} key={project?.sys?.id}>
