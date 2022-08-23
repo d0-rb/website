@@ -136,8 +136,8 @@ const About = forwardRef(({ setSpeech, interacted, setInteracted, children }, re
                   </Parallax>
                   <Parallax
                     translateY={['30vh', '0vh']}
-                    startScroll={scrollLength * 0.3}
-                    endScroll={scrollLength * 0.8}
+                    startScroll={scrollLength * 0.25}
+                    endScroll={scrollLength * 0.75}
                   >
                     <Paper
                       elevation={8}
@@ -185,8 +185,8 @@ const About = forwardRef(({ setSpeech, interacted, setInteracted, children }, re
                   </Parallax>
                   <Parallax
                     translateY={['30vh', '0vh']}
-                    startScroll={scrollLength * 0.6}
-                    endScroll={scrollLength * 1.1}
+                    startScroll={scrollLength * 0.5}
+                    endScroll={scrollLength * 1}
                   >
                     <Paper
                       elevation={8}
@@ -213,31 +213,31 @@ const About = forwardRef(({ setSpeech, interacted, setInteracted, children }, re
                   <ImageList variant="masonry" cols={2}>
                     <ImageListItem>
                       <img
-                        src="/headshot.png"
+                        src="/assets/headshot.png"
                         loading="lazy"
                       />
                     </ImageListItem>
                     <ImageListItem>
                       <img
-                        src="/headshot.png"
+                        src="/assets/headshot.png"
                         loading="lazy"
                       />
                     </ImageListItem>
                     <ImageListItem>
                       <img
-                        src="/headshot.png"
+                        src="/assets/headshot.png"
                         loading="lazy"
                       />
                     </ImageListItem>
                     <ImageListItem>
                       <img
-                        src="/headshot.png"
+                        src="/assets/headshot.png"
                         loading="lazy"
                       />
                     </ImageListItem>
                     <ImageListItem>
                       <img
-                        src="/headshot.png"
+                        src="/assets/headshot.png"
                         loading="lazy"
                       />
                     </ImageListItem>

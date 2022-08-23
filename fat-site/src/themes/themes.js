@@ -27,6 +27,13 @@ const themeDifferences = {  // dict of palettes that have different values
         main: '#f8971f',
       },
     },
+    parallax: {
+      distant: '/assets/intro-parallax-dark/distant.png',
+      far: '/assets/intro-parallax-dark/far.png',
+      mid: '/assets/intro-parallax-dark/mid.png',
+      near: '/assets/intro-parallax-dark/near.png',
+      close: '/assets/intro-parallax-dark/close.png',
+    }
   },
   light: {
     palette: {

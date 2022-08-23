@@ -18,8 +18,8 @@ const ROTATION_SENSITIVITY = 1.5
 const INTERACTION_TIMEOUT = 10
 
 function Model({ mouse, canvas, setInteracted, interacted, setOpen, open, setCursor, fadeTime }) {
-  const mtl = useLoader(MTLLoader, '/owl.obj.mtl')
-  const obj = useLoader(OBJLoader, '/owl.obj')
+  const mtl = useLoader(MTLLoader, '/assets/owl.obj.mtl')
+  const obj = useLoader(OBJLoader, '/assets/owl.obj')
   const mesh = useRef()
   
   const [active, setActive] = useState(false)
@@ -59,7 +59,7 @@ function Model({ mouse, canvas, setInteracted, interacted, setOpen, open, setCur
     }
   })
   
-  const texture = useLoader(TextureLoader, '/owl-texture.png')
+  const texture = useLoader(TextureLoader, '/assets/owl-texture.png')
   const geometry = useMemo(() => {
     let g;
     obj.traverse((c) => {
